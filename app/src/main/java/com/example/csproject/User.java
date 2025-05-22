@@ -2,19 +2,22 @@ package com.example.csproject;
 
 public class User {
     private String username;
-    private String password;
+    private float winRate;
+    private int gamesPlayed;
+    private int gamesWon;
     private String email;
+
+    private int streak;
 
     public User() {}
 
-    public User(String username, String password, String email) {
+    public User(String username,  String email) {
         this.username = username;
-        this.password = password;
         this.email = email;
     }
-    public User(String email, String password) {
-        this.password = email;
-        this.email = password;
+
+    public User(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
@@ -23,17 +26,22 @@ public class User {
     public String getEmail() {
         return email;
     }
-    public String getPassword() {
-        return password;
-    }
+    public int getGamesPlayed() { return gamesPlayed; }
+    public int getGamesWon() {return gamesWon;}
 
+    public float getWinRate() { return winRate;}
+
+    public void setGamesPlayed() {
+        gamesPlayed++;
+    }
+    public void setGamesWon() {gamesWon++;}
     public void setUsername(String username) {
         this.username = username;
-    }
-    public void setPassword(String password) {
-        this.password = password;
     }
     public void setEmail(String email) {
         this.email = email;
     }
+    public void UpdateWR() {this.winRate = (int) (gamesWon / gamesPlayed) * 100 ;}
+
+    public void UpdateStreak() {this.streak += 1; }
 }

@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "739147032824",
-    "project_id": "csproject-c1f35",
-    "storage_bucket": "csproject-c1f35.firebasestorage.app"
+    "project_number": "104986466340",
+    "firebase_url": "https://worldel-default-rtdb.firebaseio.com",
+    "project_id": "worldel",
+    "storage_bucket": "worldel.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:739147032824:android:724e3bb42413b36496f30d",
+        "mobilesdk_app_id": "1:104986466340:android:ded2da5440967463f620b1",
         "android_client_info": {
           "package_name": "com.example.csproject"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDEOaUNrUHCYSy22fc7fTAgnTHNIf6iddU"
+          "current_key": "AIzaSyB2hDkEDyuF30Zf6QMCgHZtKLjMwlZuz0Y"
         }
       ],
       "services": {

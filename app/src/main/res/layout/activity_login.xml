@@ -25,6 +25,7 @@
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -37,6 +38,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLogin" />

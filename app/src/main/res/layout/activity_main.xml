@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/LoginButton"
         android:layout_width="113dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,11 +31,21 @@
     <Button
         android:id="@+id/RegiButton"
         android:layout_width="110dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
+
+    <Button
+        android:id="@+id/GuestButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Play As Guest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegiButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
