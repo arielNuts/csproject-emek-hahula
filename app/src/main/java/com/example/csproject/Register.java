@@ -1,22 +1,22 @@
 package com.example.csproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-import android.widget.Button;
-import android.content.Intent;
-import android.widget.TextView;
-
 
 public class Register extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         TextView regiTextView = findViewById(R.id.textView2);
         TextView username = findViewById(R.id.username);
         TextView email = findViewById(R.id.email);
@@ -53,5 +53,7 @@ public class Register extends AppCompatActivity {
             }
 
         });
+
     }
+
 }

@@ -1,13 +1,5 @@
 package com.example.csproject;
 
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,30 +30,57 @@ public class WordleAdapter extends RecyclerView.Adapter<WordleAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WordleCell cell = cellsList.get(position);
-
-        // Set letter
         holder.letterText.setText(cell.getLetter());
 
-        // Apply styling based on state
         switch (cell.getState()) {
             case WordleCell.STATE_EMPTY:
-                holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cell_empty));
-                holder.letterText.setTextColor(context.getResources().getColor(R.color.text_dark));
+                // ─── Empty cell: keep the gray border on the TextView ───
+                holder.cardView.setCardBackgroundColor(
+                        context.getResources().getColor(R.color.cell_empty)
+                );
+                holder.letterText.setTextColor(
+                        context.getResources().getColor(R.color.text_dark)
+                );
+                // put the gray border drawable back
+                holder.letterText.setBackgroundResource(R.drawable.gray_border);
                 break;
+
             case WordleCell.STATE_CORRECT:
-                holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cell_correct));
-                holder.letterText.setTextColor(context.getResources().getColor(R.color.text_light));
+                // ─── Guessed correct: show green fill and NO border ───
+                holder.cardView.setCardBackgroundColor(
+                        context.getResources().getColor(R.color.cell_correct)
+                );
+                holder.letterText.setTextColor(
+                        context.getResources().getColor(R.color.text_light)
+                );
+                // remove the border drawable
+                holder.letterText.setBackground(null);
                 break;
+
             case WordleCell.STATE_MISPLACED:
-                holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cell_misplaced));
-                holder.letterText.setTextColor(context.getResources().getColor(R.color.text_light));
+                // ─── Guessed wrong position: show yellow fill and NO border ───
+                holder.cardView.setCardBackgroundColor(
+                        context.getResources().getColor(R.color.cell_misplaced)
+                );
+                holder.letterText.setTextColor(
+                        context.getResources().getColor(R.color.text_light)
+                );
+                holder.letterText.setBackground(null);
                 break;
+
             case WordleCell.STATE_WRONG:
-                holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cell_wrong));
-                holder.letterText.setTextColor(context.getResources().getColor(R.color.text_light));
+                // ─── Letter not in word: show gray fill (darker) and NO border ───
+                holder.cardView.setCardBackgroundColor(
+                        context.getResources().getColor(R.color.cell_wrong)
+                );
+                holder.letterText.setTextColor(
+                        context.getResources().getColor(R.color.text_light)
+                );
+                holder.letterText.setBackground(null);
                 break;
         }
     }

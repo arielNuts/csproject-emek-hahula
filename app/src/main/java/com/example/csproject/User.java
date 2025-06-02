@@ -5,13 +5,16 @@ public class User {
     private float winRate;
     private int gamesPlayed;
     private int gamesWon;
-    private String email;
 
     private int streak;
+    private int maxStreak;
+    private String email;
+
+
 
     public User() {}
 
-    public User(String username,  String email) {
+    public User(String email, String username) {
         this.username = username;
         this.email = email;
     }
@@ -43,5 +46,11 @@ public class User {
     }
     public void UpdateWR() {this.winRate = (int) (gamesWon / gamesPlayed) * 100 ;}
 
+    public int getMaxStreak() {
+        return this.maxStreak;
+    }
+    public int getStreak() {
+        return this.streak;
+    }
     public void UpdateStreak() {this.streak += 1; }
 }

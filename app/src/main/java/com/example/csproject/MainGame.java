@@ -9,6 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +29,11 @@ public class MainGame extends AppCompatActivity implements View.OnClickListener 
     // Game settings
     private static final int WORD_LENGTH = 5;
     private static final int MAX_ATTEMPTS = 6;
+
+    DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+
+
+
 
     // Game state
     private String targetWord;
@@ -39,12 +50,12 @@ public class MainGame extends AppCompatActivity implements View.OnClickListener 
     private List<String> validWords;
     private List<String> possibleTargets;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_five);
         findViewById(R.id.bottom_controls).setVisibility(View.GONE);
-
 
         // Initialize word lists
         loadWordLists();
@@ -165,6 +176,7 @@ public class MainGame extends AppCompatActivity implements View.OnClickListener 
 
     private void setupGrid() {
         recyclerView = findViewById(R.id.recyclerView);
+
         cellsList = new ArrayList<>();
 
         // Initialize the grid with empty cells
@@ -179,6 +191,7 @@ public class MainGame extends AppCompatActivity implements View.OnClickListener 
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter = new WordleAdapter(this, cellsList);
         recyclerView.setAdapter(adapter);
+        recyclerView.setItemAnimator(null);
     }
 
     private void setupKeyboard() {
@@ -285,6 +298,46 @@ public class MainGame extends AppCompatActivity implements View.OnClickListener 
             gameOver = true;
             Toast.makeText(this, "You win!", Toast.LENGTH_LONG).show();
             findViewById(R.id.bottom_controls).setVisibility(View.VISIBLE);
+
+            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (firebaseUser != null) {
+                String uid = firebaseUser.getUid();
+                DatabaseReference userRef = database.child("users").child(uid);
+
+                userRef.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DataSnapshot snapshot = task.getResult();
+
+                        Long gamesWon = snapshot.child("gamesWon").getValue(Long.class);
+                        Long gamesPlayed = snapshot.child("gamesPlayed").getValue(Long.class);
+                        Long winStreak = snapshot.child("streak").getValue(Long.class);
+                        Long maxStreak = snapshot.child("maxStreak").getValue(Long.class);
+
+                        if (maxStreak == null) maxStreak = 0L;
+                        if (winStreak == null) winStreak = 0L;
+                        if (gamesWon == null) gamesWon = 0L;
+                        if (gamesPlayed == null) gamesPlayed = 0L;
+
+                        gamesWon += 1;
+                        gamesPlayed += 1;
+                        winStreak++;
+
+                        userRef.child("gamesWon").setValue(gamesWon);
+                        userRef.child("gamesPlayed").setValue(gamesPlayed);
+                        userRef.child("streak").setValue(winStreak);
+                        if (winStreak > maxStreak) {
+                            userRef.child("maxStreak").setValue(winStreak);
+                        }
+
+                        float winRate = 0;
+                        if (gamesPlayed > 0) {
+                            winRate = ((float) gamesWon / gamesPlayed) * 100;
+                        }
+                        userRef.child("winRate").setValue(winRate);
+                    }
+                });
+            }
+
             return;
         }
 
@@ -297,8 +350,37 @@ public class MainGame extends AppCompatActivity implements View.OnClickListener 
             gameOver = true;
             findViewById(R.id.bottom_controls).setVisibility(View.VISIBLE);
             Toast.makeText(this, "Game over! The word was " + targetWord, Toast.LENGTH_LONG).show();
-        }
 
+            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (firebaseUser != null) {
+                String uid = firebaseUser.getUid();
+                DatabaseReference userRef = database.child("users").child(uid);
+
+                userRef.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DataSnapshot snapshot = task.getResult();
+
+                        Long gamesWon = snapshot.child("gamesWon").getValue(Long.class);
+                        Long gamesPlayed = snapshot.child("gamesPlayed").getValue(Long.class);
+                        Long streak = snapshot.child("streak").getValue(Long.class);
+                        if (streak == null) streak = 0L;
+                        if (gamesWon == null) gamesWon = 0L;
+                        if (gamesPlayed == null) gamesPlayed = 0L;
+
+                        gamesPlayed += 1;
+                        userRef.child("gamesPlayed").setValue(gamesPlayed);
+                        userRef.child("streak").setValue(0L);
+
+
+                        float winRate = 0;
+                        if (gamesPlayed > 0) {
+                            winRate = ((float) gamesWon / gamesPlayed) * 100;
+                        }
+                        userRef.child("winRate").setValue(winRate);
+                    }
+                });
+            }
+        }
     }
 
     private void evaluateGuess(String guess) {
@@ -341,14 +423,14 @@ public class MainGame extends AppCompatActivity implements View.OnClickListener 
                 }
             }
 
-            // If not found, mark as wrong
+
             if (!found) {
                 cellsList.get(position).setState(WordleCell.STATE_WRONG);
                 updateKeyboardButton(String.valueOf(guessChar), WordleCell.STATE_WRONG);
             }
         }
 
-        // Notify adapter of changes
+
         for (int i = 0; i < WORD_LENGTH; i++) {
             adapter.notifyItemChanged(currentRow * WORD_LENGTH + i);
         }

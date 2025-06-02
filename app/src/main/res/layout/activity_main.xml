@@ -1,51 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <!-- Main Content Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.141" />
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="48dp">
 
-    <Button
-        android:id="@+id/LoginButton"
-        android:layout_width="113dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <!-- Game Title -->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WORDLE"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:textColor="@color/wordle_text"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="72dp" />
 
-    <Button
-        android:id="@+id/RegiButton"
-        android:layout_width="110dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
+        <!-- Button Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
-    <Button
-        android:id="@+id/GuestButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Play As Guest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegiButton" />
+            <!-- Login Button -->
+            <Button
+                android:id="@+id/LoginButton"
+                android:layout_width="200dp"
+                android:layout_height="52dp"
+                android:text="LOGIN"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/background_color"
+                android:elevation="2dp"
+                android:layout_marginBottom="16dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Register Button -->
+            <Button
+
+                android:id="@+id/RegiButton"
+                android:layout_width="200dp"
+                android:layout_height="52dp"
+                android:text="REGISTER"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/background_color"
+                android:elevation="1dp"
+
+                android:layout_marginBottom="32dp" />
+
+            <!-- Divider Line -->
+            <View
+                android:layout_width="160dp"
+                android:layout_height="1dp"
+                android:background="@color/wordle_border"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Guest Button -->
+            <Button
+                android:id="@+id/GuestButton"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:text="PLAY AS GUEST"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:background="@drawable/background_color"
+                android:elevation="0dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -5,17 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#FFFFFF">
+    android:background="@color/white">
 
     <!-- Title -->
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wordle Game"
+        android:text="WORDLE"
         android:textSize="28sp"
         android:textStyle="bold"
         android:gravity="center"
+        android:textColor="@color/black"
         android:layout_marginBottom="16dp"/>
 
     <!-- RecyclerView Grid for Wordle Guesses -->

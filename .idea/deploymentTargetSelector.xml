@@ -4,16 +4,16 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-05-15T16:09:08.250986500Z">
+        <DropdownSelection timestamp="2025-06-02T18:19:42.492879200Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\ariel\.android\avd\Pixel_9_Pro.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=R5CX423RM9R" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="MainPage">
+      <SelectionState runConfigName="MainGame">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
