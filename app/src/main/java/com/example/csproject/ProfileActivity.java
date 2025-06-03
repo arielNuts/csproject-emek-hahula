@@ -28,11 +28,9 @@ public class ProfileActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
 
-        // Initialize views
         loadingLayout = findViewById(R.id.loading_layout);
         mainContent = findViewById(R.id.main_content);
 
-        // Show loading initially
         showLoading(true);
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -51,7 +49,6 @@ public class ProfileActivity extends AppCompatActivity {
         TextView maxStreak = findViewById(R.id.max_streak);
 
         userRef.get().addOnCompleteListener(task -> {
-            // Hide loading when data is loaded
             showLoading(false);
 
             if (task.isSuccessful()) {

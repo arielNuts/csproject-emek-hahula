@@ -1,4 +1,3 @@
-// com.example.csproject.LeaderboardAdapter.java
 package com.example.csproject;
 
 import android.view.LayoutInflater;
@@ -46,21 +45,13 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         holder.usernameTextView.setText(entry.getUsername());
         holder.rankTextView.setText(entry.getRank());
 
-        // Set the number of wins (removed " Wins" text)
         if (entry.getGamesWon() != null) {
-            holder.winsTextView.setText(String.valueOf(entry.getGamesWon())); // <-- CHANGED HERE
+            holder.winsTextView.setText(String.valueOf(entry.getGamesWon()));
         } else {
-            holder.winsTextView.setText("0"); // Default if gamesWon is null
+            holder.winsTextView.setText("0");
         }
 
-        // Handle profile image loading
         if (entry.getProfilePicUrl() != null && !entry.getProfilePicUrl().isEmpty()) {
-            // Use Glide/Picasso here if you have them for image loading from URL
-            // Glide.with(holder.profileImageView.getContext())
-            //      .load(entry.getProfilePicUrl())
-            //      .placeholder(R.drawable.ic_profile_wordle)
-            //      .error(R.drawable.ic_profile_wordle)
-            //      .into(holder.profileImageView);
         } else {
             holder.profileImageView.setBackgroundResource(R.drawable.ic_profile_wordle);
         }

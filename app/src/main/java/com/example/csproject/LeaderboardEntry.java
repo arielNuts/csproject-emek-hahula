@@ -15,16 +15,19 @@ public class LeaderboardEntry {
         this.gamesWon = gamesWon;
         this.profilePicUrl = profilePicUrl;
     }
+
     public String getUid() {
         return this.uid;
-
     }
+
     public String getUsername() {
         return this.username;
     }
+
     public Long getGamesWon() {
         return this.gamesWon;
     }
+
     public String getProfilePicUrl() {
         return profilePicUrl;
     }
@@ -33,8 +36,7 @@ public class LeaderboardEntry {
         return this.rank;
     }
 
-    // Setters (Firebase might use these if you don't provide a public no-arg constructor)
-    public void setUid(String uid) { // <-- ADD THIS SETTER
+    public void setUid(String uid) {
         this.uid = uid;
     }
 

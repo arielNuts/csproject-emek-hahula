@@ -38,31 +38,26 @@ public class WordleAdapter extends RecyclerView.Adapter<WordleAdapter.ViewHolder
 
         switch (cell.getState()) {
             case WordleCell.STATE_EMPTY:
-                // ─── Empty cell: keep the gray border on the TextView ───
                 holder.cardView.setCardBackgroundColor(
                         context.getResources().getColor(R.color.cell_empty)
                 );
                 holder.letterText.setTextColor(
                         context.getResources().getColor(R.color.text_dark)
                 );
-                // put the gray border drawable back
                 holder.letterText.setBackgroundResource(R.drawable.gray_border);
                 break;
 
             case WordleCell.STATE_CORRECT:
-                // ─── Guessed correct: show green fill and NO border ───
                 holder.cardView.setCardBackgroundColor(
                         context.getResources().getColor(R.color.cell_correct)
                 );
                 holder.letterText.setTextColor(
                         context.getResources().getColor(R.color.text_light)
                 );
-                // remove the border drawable
                 holder.letterText.setBackground(null);
                 break;
 
             case WordleCell.STATE_MISPLACED:
-                // ─── Guessed wrong position: show yellow fill and NO border ───
                 holder.cardView.setCardBackgroundColor(
                         context.getResources().getColor(R.color.cell_misplaced)
                 );
@@ -73,7 +68,6 @@ public class WordleAdapter extends RecyclerView.Adapter<WordleAdapter.ViewHolder
                 break;
 
             case WordleCell.STATE_WRONG:
-                // ─── Letter not in word: show gray fill (darker) and NO border ───
                 holder.cardView.setCardBackgroundColor(
                         context.getResources().getColor(R.color.cell_wrong)
                 );

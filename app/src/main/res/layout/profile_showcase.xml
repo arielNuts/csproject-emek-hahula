@@ -13,7 +13,6 @@
         android:padding="24dp"
         android:layout_marginTop="48dp">
 
-        <!-- Loading Indicator -->
         <LinearLayout
             android:id="@+id/loading_layout"
             android:layout_width="match_parent"
@@ -38,7 +37,6 @@
 
         </LinearLayout>
 
-        <!-- Main Content (Initially Hidden) -->
         <LinearLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
@@ -46,7 +44,6 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <!-- Header Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +66,6 @@
 
             </LinearLayout>
 
-            <!-- User Info Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,7 +95,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Statistics Cards -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,7 +104,6 @@
                 android:textColor="#333333"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Main Stats Row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -194,7 +188,6 @@
 
             </LinearLayout>
 
-            <!-- Win Rate Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -231,7 +224,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Streak Cards -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -315,7 +307,6 @@
 
             </LinearLayout>
 
-            <!-- Log Out Button -->
             <Button
                 android:id="@+id/logoutbutton"
                 android:layout_width="match_parent"

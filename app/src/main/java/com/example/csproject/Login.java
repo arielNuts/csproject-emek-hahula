@@ -15,14 +15,12 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         Button BackButton = findViewById(R.id.loginBackButton);
         Button LoginButton = findViewById(R.id.loginButton);
 
         TextView email = findViewById(R.id.emailLogin);
         TextView password = findViewById(R.id.passwordLogin);
         Authentication authHelper = new Authentication();
-
 
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
